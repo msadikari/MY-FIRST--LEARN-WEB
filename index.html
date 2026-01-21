@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MS DOOM | The Future is Here</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;500;700&display=swap');
+
+        :root {
+            --neon-cyan: #00f2fe;
+            --neon-purple: #bc13fe;
+        }
+
+        body {
+            background-color: #020202;
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .doom-header { font-family: 'Syncopate', sans-serif; }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .glass:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.2);
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .text-glow {
+            text-shadow: 0 0 15px rgba(0, 242, 254, 0.7);
+        }
+
+        .btn-prime {
+            position: relative;
+            overflow: hidden;
+            transition: 0.4s;
+            border: 1px solid var(--neon-cyan);
+        }
+
+        .btn-prime:hover {
+            box-shadow: 0 0 20px var(--neon-cyan);
+            background: var(--neon-cyan);
+            color: #000;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: var(--neon-cyan); border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+
+    <nav class="fixed w-full z-[100] flex justify-between items-center px-10 py-6 glass translate-y-[-100%]" id="navbar">
+        <div class="text-2xl font-bold doom-header tracking-tighter text-glow">MS<span class="text-cyan-400">DOOM</span></div>
+        <div class="hidden md:flex space-x-10 text-sm font-bold tracking-widest uppercase">
+            <a href="#home" class="hover:text-cyan-400 transition">Start</a>
+            <a href="#services" class="hover:text-cyan-400 transition">Services</a>
+            <a href="#portfolio" class="hover:text-cyan-400 transition">Works</a>
+            <a href="#feedback" class="hover:text-cyan-400 transition">Clients</a>
+        </div>
+        <a href="#contact" class="btn-prime px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest">Connect</a>
+    </nav>
+
+    <section id="home" class="relative h-screen flex flex-col justify-center items-center text-center px-4">
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-cyan-500/10 blur-[120px] rounded-full"></div>
+        <h2 class="text-cyan-400 font-bold tracking-[0.5em] uppercase mb-4 opacity-0" id="hero-sub">Welcome to the Nexus</h2>
+        <h1 class="text-7xl md:text-9xl font-black doom-header leading-tight opacity-0" id="hero-title">
+            MS <span class="text-transparent" style="-webkit-text-stroke: 1px #00f2fe;">DOOM</span>
+        </h1>
+        <p class="mt-6 text-gray-400 max-w-xl text-lg opacity-0" id="hero-desc">
+            We architect high-performance digital ecosystems. Experience the fusion of speed, security, and aesthetics.
+        </p>
+        <div class="mt-10 opacity-0" id="hero-btn">
+            <a href="#services" class="px-10 py-4 btn-prime font-bold rounded-sm tracking-widest uppercase">Initiate Protocol</a>
+        </div>
+    </section>
+
+    <section id="services" class="py-32 px-10">
+        <div class="max-w-7xl mx-auto">
+            <h3 class="text-4xl font-bold doom-header mb-20 text-center text-glow">CORE SERVICES</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass p-10 rounded-lg group" data-aos="fade-up">
+                    <div class="h-1 w-20 bg-cyan-500 mb-8 transition-all group-hover:w-full"></div>
+                    <h4 class="text-2xl font-bold mb-4">Software Forge</h4>
+                    <p class="text-gray-400 leading-relaxed">Tailor-made enterprise software designed for massive scale and zero latency.</p>
+                </div>
+                <div class="glass p-10 rounded-lg group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-1 w-20 bg-purple-500 mb-8 transition-all group-hover:w-full"></div>
+                    <h4 class="text-2xl font-bold mb-4">Neural Networks</h4>
+                    <p class="text-gray-400 leading-relaxed">Integrating deep learning and AI to automate your business intelligence.</p>
+                </div>
+                <div class="glass p-10 rounded-lg group" data-aos="fade-up" data-aos-delay="400">
+                    <div class="h-1 w-20 bg-blue-500 mb-8 transition-all group-hover:w-full"></div>
+                    <h4 class="text-2xl font-bold mb-4">Cyber Armor</h4>
+                    <p class="text-gray-400 leading-relaxed">Military-grade encryption and security audits for digital fortresses.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-32 px-10 bg-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+                <h3 class="text-4xl font-bold doom-header text-glow">MASTERPIECES</h3>
+                <p class="text-gray-400 md:max-w-sm text-right italic">"A glimpse into the digital realms we've created."</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="relative group overflow-hidden rounded-2xl border border-white/10" data-aos="zoom-in-right">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" class="w-full h-[400px] object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-center items-center p-10">
+                        <h4 class="text-3xl font-bold text-cyan-400">Cyber-X Dashboard</h4>
+                        <p class="mt-4 text-center">Cloud infrastructure management platform for global enterprises.</p>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-2xl border border-white/10" data-aos="zoom-in-left">
+                    <img src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&w=800&q=80" class="w-full h-[400px] object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-center items-center p-10">
+                        <h4 class="text-3xl font-bold text-purple-400">Aegis Wallet</h4>
+                        <p class="mt-4 text-center">Next-gen decentralized finance mobile application.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="feedback" class="py-32 px-10">
+        <div class="max-w-5xl mx-auto">
+            <h3 class="text-4xl font-bold doom-header text-center mb-16">CLIENT VIBES</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+                <div class="glass p-8 rounded-2xl" data-aos="fade-right">
+                    <h4 class="text-xl font-bold mb-6 text-cyan-400">Leave a Mark</h4>
+                    <form class="space-y-4">
+                        <input type="text" placeholder="Identity (Name)" class="w-full bg-black/40 border border-white/10 p-4 rounded-lg focus:border-cyan-500 outline-none">
+                        <textarea placeholder="Transmission (Message)" rows="4" class="w-full bg-black/40 border border-white/10 p-4 rounded-lg focus:border-cyan-500 outline-none"></textarea>
+                        <button class="w-full btn-prime py-4 font-bold uppercase tracking-[0.2em]">Send Transmission</button>
+                    </form>
+                </div>
+                <div class="space-y-6">
+                    <div class="glass p-6 rounded-xl border-l-4 border-cyan-500" data-aos="fade-left">
+                        <p class="italic text-gray-300">"MS DOOM rebuilt our entire server architecture. The efficiency increased by 400%. Unbelievable work."</p>
+                        <div class="mt-4 flex items-center space-x-4">
+                            <div class="w-10 h-10 bg-cyan-500 rounded-full"></div>
+                            <span class="font-bold">Alpha Prime Tech</span>
+                        </div>
+                    </div>
+                    <div class="glass p-6 rounded-xl border-l-4 border-purple-500" data-aos="fade-left" data-aos-delay="200">
+                        <p class="italic text-gray-300">"Siraawatama supiri web ekak hadala dunne. Design eka patta futuristic. Recommended!"</p>
+                        <div class="mt-4 flex items-center space-x-4">
+                            <div class="w-10 h-10 bg-purple-500 rounded-full"></div>
+                            <span class="font-bold">Chamod S.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 text-center border-t border-white/10">
+        <div class="doom-header text-xl mb-4 text-glow italic">STAY CONNECTED</div>
+        <div class="flex justify-center space-x-8 text-gray-500 font-bold mb-8">
+            <a href="#" class="hover:text-cyan-400">GITHUB</a>
+            <a href="#" class="hover:text-cyan-400">INSTAGRAM</a>
+            <a href="#" class="hover:text-cyan-400">X-LABS</a>
+        </div>
+        <p class="text-[10px] tracking-[0.3em] text-gray-600 uppercase">&copy; 2026 MS DOOM IT | Beyond Human Limits</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // 1. Smooth Scroll (Lenis) - MEKA THAMA SCROLL EKA HADANNE
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // 2. Animations (GSAP)
+        gsap.to("#navbar", { y: 0, duration: 1, ease: "power4.out", delay: 0.5 });
+        gsap.to("#hero-sub", { opacity: 1, y: -10, duration: 1, delay: 0.8 });
+        gsap.to("#hero-title", { opacity: 1, y: -10, duration: 1, delay: 1 });
+        gsap.to("#hero-desc", { opacity: 1, y: -10, duration: 1, delay: 1.2 });
+        gsap.to("#hero-btn", { opacity: 1, y: -10, duration: 1, delay: 1.4 });
+
+        // 3. 3D Background (Three.js)
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        const starGeometry = new THREE.BufferGeometry();
+        const starCount = 2000;
+        const starPos = new Float32Array(starCount * 3);
+        for(let i=0; i<starCount*3; i++) { starPos[i] = (Math.random() - 0.5) * 15; }
+        starGeometry.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+        const starMaterial = new THREE.PointsMaterial({ size: 0.015, color: 0x00f2fe });
+        const stars = new THREE.Points(starGeometry, starMaterial);
+        scene.add(stars);
+
+        camera.position.z = 5;
+
+        // Mouse Move Effect for 3D
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth - 0.5) * 0.5;
+            mouseY = (e.clientY / window.innerHeight - 0.5) * 0.5;
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            stars.rotation.y += 0.001;
+            stars.rotation.x += (mouseY - stars.rotation.x) * 0.05;
+            stars.rotation.y += (mouseX - stars.rotation.y) * 0.05;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // 4. AOS Initialization
+        AOS.init({ duration: 1000, offset: 100, once: false });
+
+        // Window Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
